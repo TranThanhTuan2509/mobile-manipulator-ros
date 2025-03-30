@@ -19,6 +19,7 @@ Clone this repository and build the project:
     git clone https://github.com/TranThanhTuan2509/mobile-manipulator-ros.git
     cd ~/catkin_ws
     catkin_make
+    source devel/setup.bash
 
 # Running the Robot
 
