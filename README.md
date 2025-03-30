@@ -2,8 +2,7 @@
 
 <p align="center">
   <picture>
-    <img alt="image" src="![ros](https://github.com/user-attachments/assets/04389c93-ca73-4bd1-a877-f3ca6cde3a40)
-"" width="600" height="350" style="max-width: 100%;">
+    <img alt="image" src="https://github.com/TranThanhTuan2509/mobile-manipulator-ros/blob/main/asset/ros.png "video2command"" width="600" height="350" style="max-width: 100%;">
   </picture>
 </p>
 
