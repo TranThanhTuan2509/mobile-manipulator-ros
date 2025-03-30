@@ -34,14 +34,7 @@ Before controlling the robot, launch it in Rviz and Gazebo.
     rosrun midterm free_control.py
 Then,
 
-    rostopic pub /meca/diff_drive_controller/cmd_vel geometry_msgs/Twist "linear:
-      x: 0.8
-      y: 0.0
-      z: 0.0
-    angular:
-      x: 0.0
-      y: 0.0
-      z: 0.2"
+    rostopic pub /meca/diff_drive_controller/cmd_vel geometry_msgs/Twist "linear:{x: 0.8, y: 0.0, z: 0.0} angular:{x: 0.0, y: 0.0, z: 0.2}"
 
 ### 1.2) Control via Teleoperation (Keyboard Control)
 
@@ -52,10 +45,21 @@ Then,
        roslaunch midterm controller.launch
 
 ### 2.1) Automatic Control with Obstacle Avoidance
+To manually enter velocity values and control the robot, run:
 
     rosrun midterm main.py
 
-Warning: It is recommended not to modify this file or manually enter CLI commands for control due to its waiting-time property.
+Once the program starts, the terminal will prompt you to enter three values, one for vx and the others for vy and wz:
+`Enter 'vx vy wz' (velocities) or 'stop' to stop: 1 -1 0`
+Enters `exit` to exit the program or `value1 value2 value3` to control the robot car
+
 ### 2.2) Teleoperation (Keyboard Control)
     
     rosrun midterm teleoperation_4_wheels.py
+## 3) Control the arm only
+To control only the robotic arm, run:
+
+    rosrun midterm control_arm_only.py
+Once the program starts, the terminal will prompt you to enter two values, one for link 1 and the other for link 2:
+`Enter 's1 s2' (servo1 servo2) or 'exit' to quit: 0.5 0.3`
+Enters `exit` to exit the program or `value1 value2` to control the arm
