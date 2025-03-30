@@ -74,7 +74,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://midterm/urdf/meshes/Left_backward_wheel.STL" />
+          <mesh filename="package://midterm/urdf/meshes/Right_backward_wheel.STL" />
         </geometry>
         <material name="">
           <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
@@ -83,7 +83,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://midterm/urdf/meshes/Left_backward_wheel.STL" />
+          <mesh filename="package://midterm/urdf/meshes/Right_backward_wheel.STL" />
         </geometry>
       </collision>
     </link>
@@ -105,7 +105,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://midterm/urdf/meshes/Right_backward_wheel.STL" />
+          <mesh filename="package://midterm/urdf/meshes/Left_backward_wheel.STL" />
         </geometry>
         <material name="">
           <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
@@ -114,7 +114,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://midterm/urdf/meshes/Right_backward_wheel.STL" />
+          <mesh filename="package://midterm/urdf/meshes/Left_backward_wheel.STL" />
         </geometry>
       </collision>
     </link>

@@ -2,7 +2,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
     <xacro:macro name="lidar">
     
-        <link name="lidar">
+        <link name="lindar">
             <inertial>
                 <origin xyz="-0.00829409957033964 -6.93889390390723E-18 0.010701142222791" rpy="0 0 0" />
                 <mass value="0.146695752131392" />
@@ -27,12 +27,12 @@
         <joint name="lidar_joint" type="fixed">
             <origin xyz="0.108 0 0.042" rpy="0 0 0" />
             <parent link="base_link" />
-            <child link="lidar" />
+            <child link="lindar" />
             <axis xyz="0 0 0" />
             <dynamics damping="0.1" friction="0.1" />
         </joint>
 
-    <gazebo reference="lidar">
+    <gazebo reference="lindar">
       <sensor type="ray" name="lidar_sensor">
         <pose>0 0 0 0 0 0</pose>
         <visualize>true</visualize>

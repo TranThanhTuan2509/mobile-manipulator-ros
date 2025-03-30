@@ -94,7 +94,7 @@ class Controller:
             self.servo1_pub.publish(0.0)
             self.servo2_pub.publish(0.0)
 
-    def move(self, vx, vy, omega):
+    def move(self):
         """Moves the robot with obstacle avoidance."""
         rospy.loginfo("Initializing movement...")
         rospy.sleep(2)  # Allow ROS to initialize
@@ -105,30 +105,51 @@ class Controller:
         servo_thread.start()
 
         while not rospy.is_shutdown():
-            # Get obstacle direction
-            obstacle_direction = self.get_obstacle_direction()
+            try:
+                user_input = input("\nEnter 'vx vy wz' (velocities) or 'stop' to stop: ").strip()
+                
+                if user_input.lower() == "stop":
+                    self.pub_lf.publish(0.0)
+                    self.pub_lb.publish(0.0)
+                    self.pub_rf.publish(0.0)
+                    self.pub_rb.publish(0.0)
+                    print("Robot Stopped!")
+                    continue  # Skip the rest of the loop
 
-            if obstacle_direction == "both":
-                rospy.logwarn("Obstacle detected on both direction! STOP...")
-                vx, vy, omega = 0.0, 0.0, 0.0  # Stop the robot
-            elif obstacle_direction == "left":
-                rospy.logwarn("Obstacle detected on LEFT! Turning RIGHT...")
-                vx, vy, omega = 0.0, 0.0, -1.0  # Turn right
-            elif obstacle_direction == "right":
-                rospy.logwarn("Obstacle detected on RIGHT! Turning LEFT...")
-                vx, vy, omega = 0.0, 0.0, 1.0  # Turn left
-            else:
-                rospy.loginfo("No obstacles detected. Moving forward.")
-                vx, vy, omega = vx, vy, omega  # Move forward
+                # Parse user input
+                vx, vy, omega = map(float, user_input.split())
 
-            # Compute wheel velocities
-            wheel_velocities = self.inverse_kinematics(vx, vy, omega)
+                # Detect obstacles
+                obstacle_direction = self.get_obstacle_direction()
 
-            # Publish wheel velocities
-            self.pub_lf.publish(wheel_velocities[0])
-            self.pub_rf.publish(wheel_velocities[1])
-            self.pub_lb.publish(wheel_velocities[2])
-            self.pub_rb.publish(wheel_velocities[3])
+                if obstacle_direction == "both":
+                    rospy.logwarn("Obstacle detected on both directions! STOP...")
+                    vx, vy, omega = 0.0, 0.0, 0.0  # Stop the robot
+                elif obstacle_direction == "left":
+                    rospy.logwarn("Obstacle detected on LEFT! Turning RIGHT...")
+                    vx, vy, omega = 0.0, 0.0, -1.0  # Turn right
+                elif obstacle_direction == "right":
+                    rospy.logwarn("Obstacle detected on RIGHT! Turning LEFT...")
+                    vx, vy, omega = 0.0, 0.0, 1.0  # Turn left
+                else:
+                    rospy.loginfo("No obstacles detected. Moving forward.")
+
+                # Compute wheel velocities using inverse kinematics
+                wheel_velocities = self.inverse_kinematics(vx, vy, omega)
+
+                # Publish wheel velocities
+                self.pub_lf.publish(wheel_velocities[0])
+                self.pub_rf.publish(wheel_velocities[1])
+                self.pub_lb.publish(wheel_velocities[2])
+                self.pub_rb.publish(wheel_velocities[3])
+
+                # Correct logging
+                rospy.loginfo(f"Moving Wheels -> LF: {wheel_velocities[0]:.2f}, "
+                            f"LB: {wheel_velocities[2]:.2f}, RF: {wheel_velocities[1]:.2f}, "
+                            f"RB: {wheel_velocities[3]:.2f}")
+
+            except ValueError:
+                print("Invalid input. Please enter 3 numbers (vx vy wz) or 'stop'.")
 
         rospy.sleep(5)  # Allow ROS to initialize
         # Stop the robot
