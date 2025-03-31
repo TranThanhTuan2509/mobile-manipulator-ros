@@ -151,7 +151,7 @@ class Controller:
             except ValueError:
                 print("Invalid input. Please enter 3 numbers (vx vy wz) or 'stop'.")
 
-        rospy.sleep(5)  # Allow ROS to initialize
+        # rospy.sleep(5)  # Allow ROS to initialize
         # Stop the robot
         self.stop()
 

@@ -22,8 +22,8 @@ class TeleopController:
         rospy.loginfo(
             "Press 'w' to move forward, "
             "'s' to move backward, "
-            "'q' to rotate left, "
-            "'e' to rotate right,\n"
+            "'a' to rotate left, "
+            "'d' to rotate right,\n"
             "'x' to stop.\n"
             "Press 'u' to increase speed, "
             "'l' to decrease speed. "
@@ -45,8 +45,8 @@ class TeleopController:
         """Continuously moves the servo back and forth while the robot is running."""
         t = 0
         while not rospy.is_shutdown():
-            servo1_value = 0.2 + 0.4 * np.sin(t)  # Oscillates between 0.1 and 0.6
-            servo2_value = 0.5 + 0.4 * np.cos(t)  # Oscillates between 0.1 and 0.9
+            servo1_value = 0.2 + 0.4 * np.sin(t)
+            servo2_value = 0.5 + 0.4 * np.cos(t) 
             
             self.servo1_pub.publish(servo1_value)
             self.servo2_pub.publish(servo2_value)
@@ -69,19 +69,11 @@ class TeleopController:
                 self.twist.linear.x = -self.velocity
                 self.twist.linear.y = 0
                 self.twist.angular.z = 0
-            elif key == "a":  # Strafe Left
-                self.twist.linear.x = 0
-                self.twist.linear.y = -self.velocity
-                self.twist.angular.z = 0
-            elif key == "d":  # Strafe Right
-                self.twist.linear.x = 0
-                self.twist.linear.y = self.velocity
-                self.twist.angular.z = 0
-            elif key == "q":  # Rotate Left
+            elif key == "a":  # Rotate Left
                 self.twist.linear.x = 0
                 self.twist.linear.y = 0
                 self.twist.angular.z = self.angular_velocity
-            elif key == "e":  # Rotate Right
+            elif key == "d":  # Rotate Right
                 self.twist.linear.x = 0
                 self.twist.linear.y = 0
                 self.twist.angular.z = -self.angular_velocity

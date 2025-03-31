@@ -13,7 +13,7 @@ class CustomTeleopController:
     def __init__(self):
         rospy.init_node("custom_teleop_controller", anonymous=True)
 
-        # Publishers for wheel velocities
+
         self.pub_lf = rospy.Publisher("/meca/left_forward_controller/command", Float64, queue_size=10)
         self.pub_lb = rospy.Publisher("/meca/left_backward_controller/command", Float64, queue_size=10)
         self.pub_rf = rospy.Publisher("/meca/right_forward_controller/command", Float64, queue_size=10)
@@ -23,12 +23,12 @@ class CustomTeleopController:
         self.servo2_pub = rospy.Publisher("/meca/servo2_controller/command", Float64, queue_size=10)
         
         self.rate = rospy.Rate(10)  # 10 Hz update rate
-        # Robot parameters
+   
         self.lx = 0.148  # Distance from center to wheels in x direction (m)
         self.ly = 0.075  # Distance from center to wheels in y direction (m)
         self.r = 0.05983 # Wheel radius (m)
 
-        # Speed variables
+  
         self.velocity = 0.2  # Initial velocity
         self.velocity_step = 0.001  # Amount to increase/decrease per key press
         self.max_velocity = 1.0  # Maximum velocity
@@ -40,8 +40,8 @@ class CustomTeleopController:
         """Continuously moves the servo back and forth while the robot is running."""
         t = 0
         while not rospy.is_shutdown():
-            servo1_value = 0.2 + 0.4 * np.sin(t)  # Oscillates between 0.1 and 0.6
-            servo2_value = 0.5 + 0.4 * np.cos(t)  # Oscillates between 0.1 and 0.9
+            servo1_value = 0.2 + 0.4 * np.sin(t)
+            servo2_value = 0.5 + 0.4 * np.cos(t)
             
             self.servo1_pub.publish(servo1_value)
             self.servo2_pub.publish(servo2_value)
