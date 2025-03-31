@@ -32,9 +32,10 @@ Before controlling the robot, launch it in Rviz and Gazebo.
 ### 1.1) Control with a Specific Velocity or Angular Command
 
     rosrun midterm free_control.py
-Then,
-
-    rostopic pub /meca/diff_drive_controller/cmd_vel geometry_msgs/Twist "linear:{x: 0.8, y: 0.0, z: 0.0} angular:{x: 0.0, y: 0.0, z: 0.2}"
+    
+Once the program starts, the terminal will prompt you to enter two values, one for v linear x and the other for angular z:
+`Enter 'v z' (velocities) or 'stop' to stop: 1 0`
+Enters `stop` to stop the robot or `value1 value2` to control the robot car
 
 ### 1.2) Control via Teleoperation (Keyboard Control)
 
@@ -51,7 +52,7 @@ To manually enter velocity values and control the robot, run:
 
 Once the program starts, the terminal will prompt you to enter three values, one for vx and the others for vy and wz:
 `Enter 'vx vy wz' (velocities) or 'stop' to stop: 1 -1 0`
-Enters `exit` to exit the program or `value1 value2 value3` to control the robot car
+Enters `stop` to stop the robot or `value1 value2 value3` to control the robot car
 
 ### 2.2) Teleoperation (Keyboard Control)
     
