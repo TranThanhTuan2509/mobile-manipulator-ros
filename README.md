@@ -23,8 +23,12 @@ Clone this repository and build the project:
 
 # Running the Robot
 
-This project provides 4 types of control methods.
-Before controlling the robot, launch it in Rviz and Gazebo.
+This project provides 3 types of control methods.
+Before controlling the robot, move your current path to my github repo you just cloned:
+
+    cd ~/catkin_ws/src/mobile-manipulator-ros
+
+Then, launch main ros package as `midterm` in Rviz and Gazebo. Everytime running, keep your terminal path points to `catkin_ws/src/mobile-manipulator-ros`
 ## 1) Differential Drive Control (Normal)
     
     roslaunch midterm controller_diff.launch
