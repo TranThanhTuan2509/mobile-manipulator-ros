@@ -28,7 +28,7 @@ Before controlling the robot, move your current path to my github repo you just 
 
     cd ~/catkin_ws/src/mobile-manipulator-ros
 
-Then, launch main ros package as `midterm` in Rviz and Gazebo. Everytime running, keep your terminal path points to `catkin_ws/src/mobile-manipulator-ros`
+Then, launch main ros package as `midterm` in Rviz and Gazebo.( Everytime running, keeps your terminal path pointing to `catkin_ws/src/mobile-manipulator-ros` )
 ## 1) Differential Drive Control (Normal)
     
     roslaunch midterm controller_diff.launch
